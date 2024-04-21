@@ -42,7 +42,7 @@
 
       <ul class="tasks" id="task-container">
         <template id="template-task">
-          <li class="tasks__item" data-state="incomplete">
+          <li class="tasks__item" data-state="complete">
             <input type="checkbox" class="tasks__checked" />
             <p class="tasks__name">Tarea</p>
             <button class="close close--task">
@@ -62,7 +62,7 @@
         <form class="modal__form" id="form-task">
           <h2 class="modal__title">
             Agrega una Tarea
-            <button class="close" id="close-modal">
+            <button class="close" id="close-modal" type="button">
               <img
                 src="./assets/icon/close.svg"
                 alt="icon_close"
@@ -81,8 +81,8 @@
               class="modal__task"
             />
 
-            <button class="btn btn--form">Agregar Tarea</button>
-            <button class="btn btn--form btn--outline">
+            <button class="btn btn--form" type="submit">Agregar Tarea</button>
+            <button class="btn btn--form btn--outline" type="reset">
               Reiniciar Formulario
             </button>
           </div>
