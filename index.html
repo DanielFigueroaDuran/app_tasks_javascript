@@ -4,6 +4,92 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aplicacion de Tareas</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500;9..40,700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body></body>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <h1 class="title">Todo List App</h1>
+
+        <div class="app__actions">
+          <button class="btn" id="add-task">
+            <img
+              src="./assets/icon/plus.svg"
+              alt="icon__plus"
+              class="btn__img"
+            />
+            Agregar Tarea
+          </button>
+
+          <div class="app__filter">
+            <button class="btn btn--outline" id="button-tooltip">
+              <img
+                src="./assets/icon/filter.svg"
+                alt="icon__plus"
+                class="btn__img"
+              />
+              Filtros
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <ul class="tasks" id="task-container">
+        <template id="template-task">
+          <li class="tasks__item" data-state="incomplete">
+            <input type="checkbox" class="tasks__checked" />
+            <p class="tasks__name">Tarea</p>
+            <button class="close close--task">
+              <img
+                src="./assets/icon/close-task.svg"
+                alt="icon_close"
+                class="close__img"
+              />
+            </button>
+          </li>
+        </template>
+      </ul>
+
+      <!-- Modal que agregue las tareas -->
+
+      <dialog class="modal" id="modal__form">
+        <form>
+          <h2 class="moda__title">
+            Agrega una Tarea
+            <button class="close" id="close-modal">
+              <img
+                src="./assets/icon/close.svg"
+                alt="icon_close"
+                class="close__img"
+              />
+            </button>
+          </h2>
+
+          <!-- Contenido dek Modal -->
+
+          <div class="modal__position">
+            <input
+              type="text"
+              placeholder="Ingresa tu tarea"
+              id="task-input"
+              class="modal__task"
+            />
+
+            <button class="btn btn-form">Agregar Tarea</button>
+            <button class="btn btn-form btn--outline">
+              Reiniciar Formulario
+            </button>
+          </div>
+        </form>
+      </dialog>
+    </main>
+
+    <script src="js/app.js"></script>
+  </body>
 </html>
