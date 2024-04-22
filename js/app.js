@@ -65,8 +65,18 @@ formTask.addEventListener("submit", function (event) {
   }
 });
 
-taskContainer.addEventListener("input", function (e) {
-  const currentTask = e.target.closest(".tasks__item");
+//  update task name and status //
+
+taskContainer.addEventListener("input", function (event) {
+  const currentTask = event.target.closest(".tasks__item");
+
+  if (event.target.matches(".tasks__name")) {
+    const newTaskName = event.target.textContent;
+
+    updateTasKName(currentTask.id, newTaskName);
+  } else if (event.target.matches(".tasks__checked")) {
+    alert("Vamos a cambiar el estado");
+  }
 
   console.log(currentTask);
 });
@@ -108,4 +118,10 @@ function getTaskById(id) {
   return tasks.filter((task) => task.id === currentId);
 }
 
-console.log(getTaskById(19.6));
+function updateTasKName(id, value) {
+  const [currentTask] = getTaskById(id);
+
+  currentTask.name = value;
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  console.log(currentTask);
+}
