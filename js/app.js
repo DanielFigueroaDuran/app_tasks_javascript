@@ -9,6 +9,13 @@ const templateTask = document.querySelector("#template-task");
 
 //console.log(taskContainer);
 
+let tasks = JSON.parse(localStorage.getItem("tasks")) ?? [];
+//console.log(tasks);
+
+tasks.forEach(function (task) {
+  renderTask(task);
+});
+
 // Open Modal //
 
 btnAddTask.addEventListener("click", () => {
@@ -52,7 +59,16 @@ formTask.addEventListener("submit", function (event) {
 
     formTask.reset();
     closeModal();
+
+    tasks.push(newTask);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }
+});
+
+taskContainer.addEventListener("input", function (e) {
+  const currentTask = e.target.closest(".tasks__item");
+
+  console.log(currentTask);
 });
 
 // create Tasks //
@@ -84,3 +100,12 @@ function renderTask(task) {
 
   taskContainer.prepend(taskTemplate);
 }
+
+// get a task by id //
+function getTaskById(id) {
+  const currentId = parseInt(id);
+
+  return tasks.filter((task) => task.id === currentId);
+}
+
+console.log(getTaskById(19.6));
