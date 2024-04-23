@@ -82,6 +82,13 @@ taskContainer.addEventListener("input", function (event) {
   //console.log(currentTask);
 });
 
+taskContainer.addEventListener("click", function (event) {
+  if (event.target.matches(".close--task, .close--task *")) {
+    const currentTask = event.target.closest(".tasks__item");
+    deleteTask(currentTask);
+  }
+});
+
 // create Tasks //
 
 function createTask(tasName) {
@@ -119,6 +126,7 @@ function getTaskById(id) {
   return tasks.filter((task) => task.id === currentId);
 }
 
+//  update task name //
 function updateTasKName(id, value) {
   const [currentTask] = getTaskById(id);
 
@@ -144,4 +152,19 @@ function updateTaskState(id, currentTaskElement, taskStatus) {
   }
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function deleteTask(currentTaskElement) {
+  const currentId = parseInt(currentTaskElement.id);
+
+  const newTask = tasks.filter((task) => task.id !== currentId);
+  tasks = newTask;
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+  currentTaskElement.classList.add("tasks__item--fade");
+
+  currentTaskElement.addEventListener("animationend", function () {
+    currentTaskElement.remove();
+  });
 }
