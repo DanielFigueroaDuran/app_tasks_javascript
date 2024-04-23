@@ -69,16 +69,17 @@ formTask.addEventListener("submit", function (event) {
 
 taskContainer.addEventListener("input", function (event) {
   const currentTask = event.target.closest(".tasks__item");
+  const currentId = currentTask.id;
 
   if (event.target.matches(".tasks__name")) {
     const newTaskName = event.target.textContent;
 
-    updateTasKName(currentTask.id, newTaskName);
+    updateTasKName(currentId, newTaskName);
   } else if (event.target.matches(".tasks__checked")) {
-    alert("Vamos a cambiar el estado");
+    updateTaskState(currentId, currentTask, event.target.checked);
   }
 
-  console.log(currentTask);
+  //console.log(currentTask);
 });
 
 // create Tasks //
@@ -123,5 +124,24 @@ function updateTasKName(id, value) {
 
   currentTask.name = value;
   localStorage.setItem("tasks", JSON.stringify(tasks));
-  console.log(currentTask);
+  //console.log(currentTask);
+}
+
+//  update task status //
+function updateTaskState(id, currentTaskElement, taskStatus) {
+  const [currentTask] = getTaskById(id);
+
+  const taskName = currentTaskElement.querySelector(".tasks__name");
+
+  currentTask.complete = taskStatus;
+
+  if (taskStatus) {
+    currentTaskElement.dataset.state = "complete";
+    taskName.contentEditable = "false";
+  } else {
+    currentTaskElement.dataset.state = "incomplete";
+    taskName.contentEditable = "true";
+  }
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
