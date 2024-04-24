@@ -7,7 +7,10 @@ const formTask = document.querySelector("#form-task");
 const taskInput = document.querySelector("#task-input");
 const templateTask = document.querySelector("#template-task");
 
-//console.log(taskContainer);
+const buttonTooltip = document.querySelector("#button-tooltip");
+const formFilter = document.querySelector("#filter");
+
+//console.log(formFilter);
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) ?? [];
 //console.log(tasks);
@@ -82,11 +85,19 @@ taskContainer.addEventListener("input", function (event) {
   //console.log(currentTask);
 });
 
+//  delete tasks
+
 taskContainer.addEventListener("click", function (event) {
   if (event.target.matches(".close--task, .close--task *")) {
     const currentTask = event.target.closest(".tasks__item");
     deleteTask(currentTask);
   }
+});
+
+// add filter //
+
+buttonTooltip.addEventListener("click", function (e) {
+  formFilter.classList.toggle("filter--show");
 });
 
 // create Tasks //

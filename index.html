@@ -36,6 +36,49 @@
               />
               Filtros
             </button>
+
+            <!-- filter form -->
+
+            <form class="filter" id="filter">
+              <!-- input for all tasks -->
+              <div class="filter__option">
+                <input
+                  type="radio"
+                  name="filter"
+                  id="all"
+                  class="filter__input"
+                  value="all"
+                  checked
+                />
+                <label for="all">Todas las tareas</label>
+              </div>
+              <!-- input para las tareas pendientes -->
+              <div class="filter__option">
+                <input
+                  type="radio"
+                  name="filter"
+                  id="pending"
+                  class="filter__input"
+                  value="pending"
+                />
+                <label for="pending">Tarea Pendientes</label>
+              </div>
+
+              <!-- tareas completadas -->
+
+              <div class="filter__option">
+                <input
+                  type="radio"
+                  name="filter"
+                  id="done"
+                  class="filter__input"
+                  value="done"
+                />
+                <label for="done">Tareas Completadas</label>
+              </div>
+
+              <button type="submit" class="btn btn--form">Filtrar</button>
+            </form>
           </div>
         </div>
       </header>
