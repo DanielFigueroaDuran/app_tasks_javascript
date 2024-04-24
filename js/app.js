@@ -96,8 +96,27 @@ taskContainer.addEventListener("click", function (event) {
 
 // add filter //
 
-buttonTooltip.addEventListener("click", function (e) {
+buttonTooltip.addEventListener("click", function (event) {
   formFilter.classList.toggle("filter--show");
+});
+
+//  determine the filters //
+
+formFilter.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  taskContainer.className = "tasks";
+
+  const currentFilter =
+    document.querySelector(".filter__input:checked").value ?? "all";
+
+  if (currentFilter === "done") {
+    taskContainer.classList.add("tasks--complete");
+  } else if (currentFilter === "pending") {
+    taskContainer.classList.add("tasks--incomplete");
+  }
+
+  formFilter.classList.remove("filter--show");
 });
 
 // create Tasks //
